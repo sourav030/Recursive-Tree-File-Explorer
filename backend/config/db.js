@@ -2,7 +2,7 @@ const mongoose =require('mongoose')
 
 const connetDb=async()=>{
     try{
-        mongoose.connect("mongodb://127.0.0.1:27017/fractral");
+        mongoose.connect(process.env.MONGO_URI);
         console.log("db connected");
     }
     catch(err){
