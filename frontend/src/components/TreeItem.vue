@@ -28,7 +28,6 @@
         v-for="child in children" 
         :key="child._id" 
         :item="child" 
-        @select-item="(item) => $emit('select-item', item)"
       />
       
       <div v-if="loadedOnce && children.length === 0" class="empty-text">
@@ -43,7 +42,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 
 const props = defineProps(['item']);
-const emit = defineEmits(['select-item']); // 'add-item' emit yahan se hata diya
+
 
 const isOpen = ref(false);
 const children = ref([]);
@@ -51,12 +50,10 @@ const loading = ref(false);
 const loadedOnce = ref(false);
 
 const handleRowClick = async () => {
-  // Details update karne ke liye parent ko event bhejna
-  emit('select-item', props.item);
+  
 
   if (props.item.type === 'folder') {
     isOpen.value = !isOpen.value;
-
     
     if (isOpen.value && !loadedOnce.value) {
       loading.value = true;

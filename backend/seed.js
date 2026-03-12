@@ -7,16 +7,16 @@ const seedData = async () => {
   try {
     await connectDB();
 
-    // Clear old data
+    
     await File.deleteMany({});
     console.log('Database Cleared...');
 
-    // Root folders
+  
     const docs = await File.create({ name: 'docs', type: 'folder', parentId: null });
     const publicFolder = await File.create({ name: 'public', type: 'folder', parentId: null });
     const srcFolder = await File.create({ name: 'src', type: 'folder', parentId: null });
 
-    // Root files
+   
     await File.create({ name: 'README.md', type: 'file', parentId: null });
     await File.create({ name: 'package.json', type: 'file', parentId: null });
 
@@ -33,18 +33,7 @@ const seedData = async () => {
       parentId: docs._id
     });
 
-    await File.create({
-      name: 'introduction.md',
-      type: 'file',
-      parentId: docs._id
-    });
-
-    // Guides files
-    await File.create({
-      name: 'installation.md',
-      type: 'file',
-      parentId: guides._id
-    });
+   
 
     await File.create({
       name: 'configuration.md',
@@ -84,17 +73,7 @@ const seedData = async () => {
       parentId: publicFolder._id
     });
 
-    await File.create({
-      name: 'logo.png',
-      type: 'file',
-      parentId: images._id
-    });
-
-    await File.create({
-      name: 'banner.jpg',
-      type: 'file',
-      parentId: images._id
-    });
+    
 
     await File.create({
       name: 'style.css',

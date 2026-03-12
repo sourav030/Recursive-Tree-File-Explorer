@@ -5,7 +5,6 @@
       <aside class="sidebar">
         <div class="sidebar-header">
           <span>Explorer</span>
-         
         </div>
         
         <div class="tree-container">
@@ -13,8 +12,6 @@
             v-for="item in rootItems" 
             :key="item._id" 
             :item="item"
-            
-            @select-item="setSelectedItem" 
           />
         </div>
       </aside>
@@ -28,11 +25,9 @@ import axios from 'axios';
 import TreeItem from './components/TreeItem.vue';
 
 const rootItems = ref([]);
-const selectedItem = ref(null);
 
-const setSelectedItem = (item) => {
-  selectedItem.value = item;
-};
+
+
 
 const fetchRootItems = async () => {
   const res = await axios.get('http://localhost:5000/api/files');
