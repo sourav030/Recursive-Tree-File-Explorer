@@ -17,9 +17,9 @@
         <template v-else>📄</template>
       </span>
 
-      <span class="name">{{ item.name }}</span>
+      <span @click="()=>store.setData(item._id)" class="name">{{ item.name }}</span>
       
-      </div>
+    </div>
 
     <div v-if="isOpen && item.type === 'folder'" class="children-group">
       <div v-if="loading" class="loading-text">Loading...</div>
@@ -40,10 +40,11 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import { usePeniStore } from '../store/store'
 
 const props = defineProps(['item']);
 
-
+const store=usePeniStore()
 const isOpen = ref(false);
 const children = ref([]);
 const loading = ref(false);
